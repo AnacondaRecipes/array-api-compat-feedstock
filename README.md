@@ -1,11 +1,11 @@
-About array-api-compat
-======================
+About array-api-compat-feedstock
+================================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/array-api-compat-feedstock/blob/main/LICENSE.txt)
 
 Home: https://data-apis.org/array-api-compat/
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/array-api-compat-feedstock/blob/main/LICENSE.txt)
 
 Summary: A wrapper around NumPy and other array libraries to make them compatible with the Array API standard
 
@@ -144,4 +144,5 @@ Feedstock Maintainers
 =====================
 
 * [@asmeurer](https://github.com/asmeurer/)
+* [@rgommers](https://github.com/rgommers/)
 
