@@ -1,5 +1,5 @@
 {% set name = "array-api-compat" %}
-{% set version = "1.1" %}
+{% set version = "1.1.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/array_api_compat-{{ version }}.tar.gz
-  sha256: cd2e2b0a047f4a822b8f947a0c9e041abe5d992a495fd640f77ea00aa9206007
+  sha256: b4ff44b645bb049da4af1c446fa5a6998b337b78a3c2690fca7d76ceb08717d1
 
 build:
   noarch: python
