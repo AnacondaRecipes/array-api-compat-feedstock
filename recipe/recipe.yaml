@@ -3,6 +3,7 @@ schema_version: 1
 context:
   name: array-api-compat
   version: "1.12.0"
+  python_min: "3.10"
 
 package:
   name: ${{ name|lower }}
