@@ -1,0 +1,63 @@
+{% set name = "array-api-compat" %}
+{% set version = "1.12.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/array_api_compat-{{ version }}.tar.gz
+  sha256: 585bc615f650de53ac24b7c012baecfcdd810f50df3573be47e6dd9fa20df974
+
+build:
+  number: 0
+  skip: true # [py<310]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python
+    - pip
+    - setuptools
+    - setuptools-scm
+  run:
+    - python
+    - numpy>=1.22
+
+test:
+  source_files:
+    - tests
+    - vendor_test
+    - pyproject.toml
+    - array_api_compat
+  imports:
+    - array_api_compat
+    - vendor_test
+    - vendor_test.vendored
+  requires:
+    - pip
+    - pytest
+    - numpy
+  commands:
+    - cd vendor_test/vendored && ln -s ../../array_api_compat _compat && cd ../../  # [not win]
+    - cd vendor_test\vendored && mklink /D _compat ..\..\array_api_compat && cd ..\..\  # [win]
+    - pip check
+    - pytest -v tests
+
+about:
+  home: https://github.com/data-apis/array-api-compat
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: A wrapper around NumPy and other array libraries to make them compatible with the Array API standard
+  description: |
+    This is a small wrapper around common array libraries that is compatible with the Array API
+    standard. Currently, NumPy, CuPy, PyTorch, Dask, JAX, ndonnx, and Sparse are supported.
+  doc_url: https://data-apis.org/array-api-compat
+  dev_url: https://github.com/data-apis/array-api-compat
+
+extra:
+  recipe-maintainers:
+    - lucascolley
+    - asmeurer
+    - rgommers
