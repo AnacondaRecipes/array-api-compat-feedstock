@@ -32,6 +32,7 @@ test:
     - array_api_compat
   imports:
     - array_api_compat
+    - array_api_compat.common
     - vendor_test
     - vendor_test.vendored
   requires:
@@ -41,6 +42,7 @@ test:
   commands:
     - cd vendor_test/vendored && ln -s ../../array_api_compat _compat && cd ../../  # [not win]
     - cd vendor_test\vendored && mklink /D _compat ..\..\array_api_compat && cd ..\..\  # [win]
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
     - pip check
     - pytest -v tests
 
