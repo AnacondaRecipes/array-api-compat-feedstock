@@ -19,8 +19,7 @@ requirements:
     - python
     - pip
     - meson-python
-    - meson
-    - ninja
+    - ninja-base
   run:
     - python
 
