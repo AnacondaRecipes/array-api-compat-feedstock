@@ -1,5 +1,5 @@
 {% set name = "array-api-compat" %}
-{% set version = "1.12.0" %}
+{% set version = "1.15.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/array_api_compat-{{ version }}.tar.gz
-  sha256: 585bc615f650de53ac24b7c012baecfcdd810f50df3573be47e6dd9fa20df974
+  sha256: 53c5f922491bf15f62847afafc4e39eedfae57d218988fefb8cce39c2a9b3dea
 
 build:
   number: 0
@@ -18,30 +18,24 @@ requirements:
   host:
     - python
     - pip
-    - setuptools
-    - setuptools-scm
+    - meson-python
+    - meson
+    - ninja
   run:
     - python
-    - numpy>=1.22
 
 test:
   source_files:
     - tests
-    - vendor_test
     - pyproject.toml
-    - array_api_compat
   imports:
     - array_api_compat
     - array_api_compat.common
-    - vendor_test
-    - vendor_test.vendored
   requires:
     - pip
     - pytest
     - numpy
   commands:
-    - cd vendor_test/vendored && ln -s ../../array_api_compat _compat && cd ../../  # [not win]
-    - cd vendor_test\vendored && mklink /D _compat ..\..\array_api_compat && cd ..\..\  # [win]
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
     - pip check
     - pytest -v tests
